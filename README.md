@@ -1,2 +1,2 @@
 # DysHelper
-Chrome extension
+DysHelper is extension for Chrome web browser.
