@@ -15,3 +15,4 @@ After download DysHelper, you need to add extension to web browser:
 #Usage
 To use DysHelper you need to be registrated in project DysTeXia to get id number. Then you can insert your id in popup page after clicking on DysHelper icon. After that, matrix for your id number will be downloaded to your browser and it will be used to parse text on web pages.
 
+For now, there are five tests matrixes, which represents five test users: user1, user2, user3, user4 and original. Matrix with name original is using matrix from research Boles and Clifford. They created table where values evaluates how much are pair of characters alike.
