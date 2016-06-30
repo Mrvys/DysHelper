@@ -1,0 +1,37 @@
+{
+	"name": "DysHelper",
+  
+	"version": "1",
+  
+	"manifest_version": 2,
+
+	"description": "Modification html of webpage",
+
+	"icons": {
+		"128": "logo128.png"
+	},
+
+	"permissions": [
+		"storage"
+	],
+  
+	"browser_action": {
+    
+		"name": "Modification html",
+    
+		"icons": { "48": "logo48.png", "128": "logo128.png"},
+
+		"default_icon": "logo128.png",
+
+		"default_popup":"popup.html"  
+	},
+  
+	"content_scripts": [ {
+    
+		"js": [ "jquery.min.js", "background.js" ],
+    
+		"matches": [ "http://*/*", "https://*/*"]
+  
+	} ]
+
+}
