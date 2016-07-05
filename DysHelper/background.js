@@ -16,7 +16,7 @@ function saveString() {
 
 //function to get matrix from server, parse it and base on these matrix slit characters on web pages
 function divider(){
-		//listener on event storage change
+	//listener on event storage change
         chrome.storage.onChanged.addListener(function (changes, namespace) {
             for (key in changes) {
                 if (key == 'userID') {
@@ -32,47 +32,40 @@ function divider(){
                                 alphabet = alphabet + data[counter];
                                 counter++;
                             }
-                            if (counter == 104) {
-				alphabet = alphabet.replace(/,/g, "");
-				alphabet = $.trim(alphabet);
-				var sumOfCharsToDivide = 0;
-				var i = counter + 1;
-				var counterOfLines = 0;
-				//parsing matrix to find chars that need to be split
-				while (i < data.length - 1) {
-					var line = [];
-					while (data[i] != '\n' && data.length > i) {
-						line = line + data[i];
-						i++;
-					}
-					var j = 0;
-					var counterOfWord = 0;
-					while (j < line.length - 1) {
-						var word = [];
-						while (line[j] != "," && line[j] != '\n' && j < line.length) {
-							word = word + line[j];
-							j++;
-						}
-						if (word > border) {
-							var newCharacter = alphabet[counterOfLines] + alphabet[counterOfWord];
-							charsToStore = charsToStore + " " + newCharacter;
-							sumOfCharsToDivide++;
-						}
-						counterOfWord++;
-						j++;
-					}
-					counterOfLines++;
-					i++;
-				}
-				var trimData = $.trim(charsToStore);
-				expressionToFind = trimData.replace(/ /g, '|');
-				saveString();
-			    }
-			    else {
-				expressionToFind = "";
-				alert(expressionToFind);
-				saveString();
-			    }
+			    alphabet = alphabet.replace(/,/g, "");
+ -                            alphabet = $.trim(alphabet);
+ -                            var sumOfCharsToDivide = 0;
+ -                            var i = counter + 1;
+ -                            var counterOfLines = 0;
+ -							//parsing matrix to find chars that need to be split
+ -                            while (i < data.length - 1) {
+ -                                var line = [];
+ -                                while (data[i] != '\n' && data.length > i) {
+ -                                    line = line + data[i];
+ -                                    i++;
+ -                                }
+ -                                var j = 0;
+ -                                var counterOfWord = 0;
+ -                                while (j < line.length - 1) {
+ -                                    var word = [];
+ -                                    while (line[j] != "," && line[j] != '\n' && j < line.length) {
+ -                                        word = word + line[j];
+ -                                        j++;
+ -                                    }
+ -                                    if (word > border) {
+ -                                        var newCharacter = alphabet[counterOfLines] + alphabet[counterOfWord];
+ -                                        charsToStore = charsToStore + " " + newCharacter;
+ -                                        sumOfCharsToDivide++;
+ -                                    }
+ -                                    counterOfWord++;
+ -                                    j++;
+ -                                }
+ -                                counterOfLines++;
+ -                                i++;
+ -                            }
+ -                            var trimData = $.trim(charsToStore);
+ -                            expressionToFind = trimData.replace(/ /g, '|');
+ -                            saveString();
                         }
                     });
                 }
