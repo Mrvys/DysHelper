@@ -23,7 +23,7 @@ function divider(){
                     userId = changes[key].newValue;
                     //download matrix from server
                     $.ajax({
-                        url: "http://is.muni.cz/www/409943/" + userId + ".txt",
+                        url: "https://is.muni.cz/www/409943/" + userId + ".txt",
                         success: function (data) {
                             var charsToStore = [];
                             var alphabet = [];
@@ -37,7 +37,7 @@ function divider(){
                             var sumOfCharsToDivide = 0;
                             var i = counter + 1;
                             var counterOfLines = 0;
-		            //parsing matrix to find chars that need to be split
+			    //parsing matrix to find chars that need to be split
                             while (i < data.length - 1) {
                                 var line = [];
                                 while (data[i] != '\n' && data.length > i) {
@@ -78,22 +78,22 @@ function divider(){
 	});
 		
 	//get pair of characters from chrome storage
-        chrome.storage.sync.get('data', function (result) {
-            expressionToFind = result.data;
-            if (expressionToFind) {
-                var re = new RegExp(expressionToFind, "g");
-				//find pair of characters that needs to be split a replace them
-                $('*').contents().filter(function () {
-                    return this.nodeType != 1
-                }).each(function () {
-                    this.textContent = this.textContent.replace(re, function (match) {
-                        return match.splice(1, "-");
-                    });
-                });
-            }
-        });
+	chrome.storage.sync.get('data', function (result) {
+		expressionToFind = result.data;
+		if (expressionToFind) {
+			var re = new RegExp(expressionToFind, "g");
+			//find pair of characters that needs to be split a replace them
+			$('*', document.body).not('script').not('style').not('noscript').contents().filter(function () {
+				return this.nodeType !== 1
+			}).each(function () {
+					this.textContent = this.textContent.replace(re, function (match) {
+						return match.splice(1, "-");
+					});
+			});
+			
+		}
+	});
 }
 
-//start afer document is ready
+//start after document is ready
 $(document).ready(divider());
-
